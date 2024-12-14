@@ -7,11 +7,26 @@
 
 import SwiftUI
 
+/*
+ MVVM Architecture
+ 
+ Model - Data Point
+ View - UI
+ ViewModel - Manages Model for View
+ 
+ */
+
 @main
 struct EightDaysApp: App {
+    
+    @StateObject var listViewModel: ListViewModel = ListViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                ListView()
+            }
+            .environmentObject(listViewModel)
         }
     }
 }

@@ -8,11 +8,72 @@
 import SwiftUI
 
 struct ListView: View {
+    
+    @EnvironmentObject var listviewModel: ListViewModel
+    @State private var showAddTaskSheet: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        if listviewModel.tasks.isEmpty {
+            ContentUnavailableView("Nothing much to do", systemImage: "sparkles" , description: Text("add tasks and get things done!"))
+        }
+        
+        List {
+            ForEach(listviewModel.tasks) { item in
+                ListRowView(task: item)
+                    .onTapGesture {
+                        withAnimation(.linear) {
+                            listviewModel.updateTask(task: item)
+                        }
+                    }
+            }
+            .onDelete(perform: listviewModel.deleteTask)
+            .onMove(perform: listviewModel.moveTask)
+        }
+                
+        .safeAreaInset(edge:.bottom , content: {
+            
+            Button {
+                showAddTaskSheet.toggle()
+            } label: {
+                Image(systemName: "plus.circle.fill")
+                                  .font(.largeTitle)
+                               .foregroundStyle(.green)
+            }
+
+            
+//            NavigationLink(destination: AddTaskView(), label: {
+//                Image(systemName: "plus.circle.fill")
+//                    .font(.largeTitle)
+//                    .foregroundStyle(.green)
+//            })
+        })
+
+        .listStyle(.plain)
+        .navigationTitle("Home 😎")
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                EditButton()
+            }
+        }
+        
+        .sheet(isPresented: $showAddTaskSheet, content: {
+            NavigationStack {
+                AddTaskView()
+                    .presentationDetents([.medium])
+            }
+            })
+        
+        
     }
 }
 
+
 #Preview {
-    ListView()
+    NavigationStack {
+        ListView()
+    }
+    .environmentObject(ListViewModel())
 }
+
+

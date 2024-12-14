@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct ListRowView: View {
+    
+    var task: TaskModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle" )
+                .foregroundStyle(task.isCompleted ? .green : .primary)
+
+            Text(task.title)
+                .strikethrough(task.isCompleted)
+                .animation(.spring(), value: task.isCompleted)
+            
+            
+            Spacer()
+        }
     }
+
 }
 
 #Preview {
-    ListRowView()
+    ListRowView(task: TaskModel(title: "Laundry", isCompleted: false))
 }
