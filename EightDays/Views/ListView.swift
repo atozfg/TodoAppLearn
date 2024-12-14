@@ -38,7 +38,9 @@ struct ListView: View {
             } label: {
                 Image(systemName: "plus.circle.fill")
                                   .font(.largeTitle)
-                               .foregroundStyle(.green)
+                               .foregroundStyle(
+                                RadialGradient(colors: [.yellow, .orange,], center: .topLeading, startRadius: 20, endRadius: 50)
+                               )
             }
 
             
