@@ -33,22 +33,30 @@ struct ListView: View {
                 
         .safeAreaInset(edge:.bottom , content: {
             
-            Button {
-                showAddTaskSheet.toggle()
-            } label: {
-                Image(systemName: "plus.circle.fill")
-                                  .font(.largeTitle)
-                               .foregroundStyle(
-                                RadialGradient(colors: [.yellow, .orange,], center: .topLeading, startRadius: 20, endRadius: 50)
-                               )
+            HStack {
+                
+                Button("Tap Me") {
+                    //
+                }
+                
+                Button {
+                    showAddTaskSheet.toggle()
+                } label: {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.largeTitle)
+                        .foregroundStyle(
+                            RadialGradient(colors: [.yellow, .orange,], center: .topLeading, startRadius: 20, endRadius: 50)
+                        )
+                }
+                
+                
+                //            NavigationLink(destination: AddTaskView(), label: {
+                //                Image(systemName: "plus.circle.fill")
+                //                    .font(.largeTitle)
+                //                    .foregroundStyle(.green)
+                //            })
+                
             }
-
-            
-//            NavigationLink(destination: AddTaskView(), label: {
-//                Image(systemName: "plus.circle.fill")
-//                    .font(.largeTitle)
-//                    .foregroundStyle(.green)
-//            })
         })
 
         .listStyle(.plain)
