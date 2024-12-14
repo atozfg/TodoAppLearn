@@ -50,7 +50,7 @@ struct ListView: View {
         })
 
         .listStyle(.plain)
-        .navigationTitle("Home 😎")
+        .navigationTitle("To-do List 😎")
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 EditButton()
