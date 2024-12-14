@@ -15,7 +15,7 @@ struct ListView: View {
     var body: some View {
         
         if listviewModel.tasks.isEmpty {
-            ContentUnavailableView("Nothing much to do", systemImage: "sparkles" , description: Text("add tasks and get things done!"))
+            ContentUnavailableView("Nothing much to do here", systemImage: "sparkles" , description: Text("add tasks and get things done!"))
         }
         
         List {
