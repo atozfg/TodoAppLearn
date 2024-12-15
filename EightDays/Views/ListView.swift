@@ -35,8 +35,8 @@ struct ListView: View {
             
             HStack {
                 
-                Button("Tap Me") {
-                    //
+                Button("Add Task Here") {
+                    showAddTaskSheet.toggle()
                 }
                 
                 Button {
